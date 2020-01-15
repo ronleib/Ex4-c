@@ -4,7 +4,7 @@
 
 #ifndef EX4_FREQUENCY_LIB_H
 #define EX4_FREQUENCY_LIB_H
-#define  MUN_Word ((int)26)
+#define  MUN_ABC 26
 #define  LINE 256
 
 typedef enum {
@@ -15,16 +15,16 @@ typedef enum {
 typedef struct node {
     char letter;
     long unsigned int count;
-    struct node* children [MUN_Word];
+    struct node* children [MUN_ABC];
 } node;
 
 void textToTree(node *head);
 
-void printInorder(node *node, char *string, int indexChar );
+void printInorder(node *node, char string[LINE], int indexChar );
 
-void printBackwards(node head);
+void printPreorder(node *node, char string[LINE], int indexChar );
 
-void addWord(node *head, const char* p, int size);
+void addWord(node *head,  char* const p, int size);
 
 boolean cheakChar(char index);
 
