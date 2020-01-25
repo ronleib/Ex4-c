@@ -10,26 +10,29 @@
 
 void textToTree(node *head) {
     char line[LINE] = {0};
-    char *p;
+    char *p = NULL;
     int run = 0;
     int sum = 0;
+	void *t = NULL;
     while (!feof(stdin)) {
         fgets(line, LINE, stdin);
         p = &line[0];
-
-        while (line[run] != ('\0')) {
-            if (cheakChar(line[run])) {
-                sum++;
-            } else if (sum != 0) {
-                addWord(head, p, sum);
-                p = p + sum + 1;
-                sum = 0;
-            } else {
-                p = p + 1;
-            }
-            run++;
-        }
-        run = 0;
+		if (t != stdin) {
+            t = stdin;
+			while (line[run] != ('\0')) {
+				if (cheakChar(line[run])) {
+					sum++;
+				} else if (sum != 0) {
+					addWord(head, p, sum);
+					p = p + sum + 1;
+					sum = 0;
+				} else {
+					p = p + 1;
+				}
+				run++;
+			}
+			run = 0;
+		}
     }
     return;
 }
@@ -91,7 +94,7 @@ void printPreorder(node *node, char string[], int indexChar ) {
 	}
     else {string[indexChar] = '\0';}
     if ( node->count > 0 ) {
-		printf ("%s %ld", string, node->count );
+		printf ("%s %ld \n", string, node->count );
 	}
     for (int i = MUN_ABC-1; i >= 0; i--) {
         if (node->children[i] != NULL) {

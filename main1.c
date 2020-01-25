@@ -4,7 +4,7 @@
 int main() {
     node head;
     head.count = 0;
-    for (int i=0;i<MUN_ABC;i++){
+    for (int i=0; i < MUN_ABC; i++){
         head.children[i] = NULL;
     }
     textToTree(&head);
@@ -15,6 +15,5 @@ int main() {
         }
     }
     freeTree(&head);
-
     return 0;
 }
