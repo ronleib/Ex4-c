@@ -13,12 +13,12 @@ void textToTree(node *head) {
     char *p = NULL;
     int run = 0;
     int sum = 0;
-	void *t = NULL;
+//	void *t = NULL;
     while (!feof(stdin)) {
-        fgets(line, LINE, stdin);
+	if (fgets(line, LINE, stdin)==NULL) continue;
         p = &line[0];
-		if (t != stdin) {
-            t = stdin;
+//		if (t != stdin) {
+//            t = stdin;
 			while (line[run] != ('\0')) {
 				if (cheakChar(line[run])) {
 					sum++;
@@ -32,7 +32,7 @@ void textToTree(node *head) {
 				run++;
 			}
 			run = 0;
-		}
+//		}
     }
     return;
 }
