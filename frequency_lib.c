@@ -2,10 +2,9 @@
 // Created by ron on 14/01/2020.
 //
 #include <stdlib.h>
-#include "frequency_lib.h"
 #include <stdio.h>
+#include "frequency_lib.h"
 #define LINE 256
-#define ascii_a 97
 #define MUN_ABC 26
 
 void textToTree(node *head) {
@@ -13,26 +12,22 @@ void textToTree(node *head) {
     char *p = NULL;
     int run = 0;
     int sum = 0;
-//	void *t = NULL;
     while (!feof(stdin)) {
-	if (fgets(line, LINE, stdin)==NULL) continue;
-        p = &line[0];
-//		if (t != stdin) {
-//            t = stdin;
-			while (line[run] != ('\0')) {
-				if (cheakChar(line[run])) {
-					sum++;
-				} else if (sum != 0) {
-					addWord(head, p, sum);
-					p = p + sum + 1;
-					sum = 0;
-				} else {
-					p = p + 1;
-				}
-				run++;
+		if (fgets(line, LINE, stdin)== NULL) continue;
+		p = &line[0];
+		while (line[run] != ('\0')) {
+			if (cheakChar(line[run])) {
+				sum++;
+			} else if (sum != 0) {
+				addWord(head, p, sum);
+				p = p + sum + 1;
+				sum = 0;
+			} else {
+				p = p + 1;
 			}
-			run = 0;
-//		}
+			run++;
+		}
+		run = 0;
     }
     return;
 }
@@ -77,7 +72,7 @@ void printInorder(node *node, char string[LINE], int indexChar ) {
 	string[indexChar] = node->letter;
 	string[indexChar+1] = '\0';
     if ( node->count > 0 ) {
-		printf ("%s\t%ld\n", string, (node->count) );
+		printf ("%s\t%ld \n", string, (node->count) );
 	}
     for (int i = 0; i < MUN_ABC; i++) {
         if (node->children[i] != NULL) {
@@ -94,7 +89,7 @@ void printPreorder(node *node, char string[], int indexChar ) {
 	}
     else {string[indexChar] = '\0';}
     if ( node->count > 0 ) {
-		printf ("%s\t%ld\n", string, node->count );
+		printf ("%s\t%ld \n", string, node->count );
 	}
     for (int i = MUN_ABC-1; i >= 0; i--) {
         if (node->children[i] != NULL) {
@@ -111,7 +106,6 @@ void freeTree(node *head) {
         }
         free(head->children[i]);
     }
-   //free(head);
 }
 
 
